@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-from todo.views import ToDoViewset
+from todo.views import ToDoViewset,GoogleLoginView
 from rest_framework.routers import DefaultRouter
 
 
@@ -27,5 +27,10 @@ router.register('', ToDoViewset, basename='todos')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)), 
-
+    path('auth/', include('dj_rest_auth.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('socialaccounts/', include('allauth.socialaccount.urls')),
+    path('auth/google/', include('allauth.socialaccount.providers.google.urls')),
+    path('google-login/', GoogleLoginView.as_view(), name='google-login'),
 ]

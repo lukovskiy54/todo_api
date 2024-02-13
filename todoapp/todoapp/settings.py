@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vdh02&hysygezytyj$z-=moy!uvab$33(9bgwaxa0m4nkihrh4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -38,15 +38,32 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'todo',
     'corsheaders',
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'django.contrib.sites',
+    
+    
+  
+    
 ]
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
     ),
     'DEFAULT_CHARSET': 'utf-8',
+    
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,15 +75,22 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
-
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '48608572513-19oeb7v99nj1sjbksiqq41npdh4sv768.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    }
+}
 ROOT_URLCONF = 'todoapp.urls'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-ALLOWED_HOSTS = [
-    '192.168.0.102',
-]
+
 
 TEMPLATES = [
     {
