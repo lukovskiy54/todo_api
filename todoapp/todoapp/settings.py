@@ -80,8 +80,8 @@ MIDDLEWARE = [
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': '48608572513-19oeb7v99nj1sjbksiqq41npdh4sv768.apps.googleusercontent.com',
-            'secret': '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',
+            'client_id': '',
+            'secret': '',
             'key': ''
         }
     }
